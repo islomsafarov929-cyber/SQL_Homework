@@ -15,7 +15,7 @@
 
 5. CREATE TABLE Students 
 (
-StudentID INT,
+StudentID INT, PRIMARY KEY
 Name VARCHAR(50),
 Age INT
 )
@@ -40,15 +40,9 @@ For example: COMMIT TRAN ...
 8. USE SchoolDB
  
  INSERT INTO Students
-(StudentID)
-VALUES
-('886699')
-(NAME)
-VALUES
-('Alan')
-(AGE) 
-VALUES
-('16')
+(StudentID, Name, Age)
+VALUES (886699, 'Alan', 16)
+
 
 9. Download "AdvenrureWorksDW2022" from internet -> go to SQL Server -> 
 from "Object Explorer" Right click to "Databases" ->click to "Restore Database..." -> 
