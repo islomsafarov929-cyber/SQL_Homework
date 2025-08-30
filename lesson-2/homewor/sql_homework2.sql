@@ -37,3 +37,35 @@ CREATE TABLE Department (DepartmentID INT PRIMARY KEY, DepartmentName VARCHAR(50
 
 10. 
 TRUNCATE TABLE Employees
+
+11.
+INSERT INTO Department (DepartmentID,DepartmentName)
+SELECT 1, 'Laura'
+UNION ALL
+SELECT 2, 'Hannah'
+UNION ALL
+SELECT 3, 'Gwen'
+UNION ALL
+SELECT 4, 'Piter'
+UNION ALL
+SELECT 5, 'Harry'
+
+12.
+UPDATE Employees
+SET Department = 'Management'
+WHERE Salary > 5000.00
+
+13. 
+TRUNCATE TABLE Employees
+
+14. 
+ALTER TABLE Employees
+DROP COLUMN Department
+
+15. 
+EXEC sp_rename 'Employees_db.dbo.Employees', 'StaffMembers'
+
+16.
+DROP TABLE Department
+
+
