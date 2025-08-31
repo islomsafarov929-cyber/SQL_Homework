@@ -4,7 +4,7 @@ CREATE TABLE Employees (EmpID INT, Name VARCHAR(50), Salary DECIMAL(10,2))
 2. 
 INSERT INTO Employees (EmpID, Name, Salary) VALUES (1, 'Diddy', 7300.55)
 
-INSERT INTO Employees (EmpID, Name, Salary) VALUES (2, 'Carolina', 6500.07), (3, 'Jhonny', 5000.00), (4, 'Mark', 999.09)
+INSERT INTO Employees (EmpID, Name, Salary) VALUES (2, 'Carolina', 6500.07), (3, 'Jhonny', 5000.00), 
 
 3. 
 UPDATE Employees 
@@ -68,4 +68,45 @@ EXEC sp_rename 'Employees_db.dbo.Employees', 'StaffMembers'
 16.
 DROP TABLE Department
 
+17. 
+CREATE TABLE Products (
+ProductID INT PRIMARY KEY, 
+ProductName VARCHAR(75), 
+Category VARCHAR(50), 
+Price DECIMAL(10,2), 
+Profit INT
+)
 
+18.
+ALTER TABLE Products 
+ADD CONSTRAINT chk_Price CHECK (Price > 0)
+
+19. 
+ALTER TABLE Products
+ADD StockQuantity INT DEFAULT 50
+
+20.
+EXEC sp_rename 'Employees_db.dbo.Products.Category', ' ProductCategory', 'COLUMN'
+
+21.
+INSERT INTO Products (ProductID, ProductName, ProductCategory, Price, Profit, StockQuantity)
+VALUES 
+(1, 'Apple', 'Fruit', 1.37, 0.37, 300),
+(2, 'Laptop', 'Device', 234.50, 34.50, 20),
+(3, 'Bread', 'Food', 2.00, 1.00, 35),
+(4, 'Nike AF1', 'Clothing', 153.00, 23.00, 40),
+(5, 'Jacket', 'Clothing', 81.47, 11.47, 45)
+
+22.
+SELECT * INTO Products_Backup FROM Products
+
+23.
+EXEC sp_rename 'Employees_db.dbo.Products', 'Inventory'
+
+24.
+ALTER TABLE Inventory
+ALTER COLUMN Price FLOAT
+
+25.
+ALTER TABLE Inventory
+ADD ProductCode INT IDENTITY(1000,5)
