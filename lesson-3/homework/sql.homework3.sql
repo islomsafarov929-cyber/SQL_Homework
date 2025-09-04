@@ -94,3 +94,39 @@ A FOREIGN KEY links two tables by referencing the PRIMARY KEY of another.
 It ensures data matches across tables, keeping relationships valid. 
 You define it in CREATE TABLE or with ALTER TABLE, and can add rules like 
 ON DELETE CASCADE to manage related data automatically. It protects consistency and builds structured connections.
+
+18.
+CREATE TABLE Customers (Age INT CHECK (Age >= 18))
+
+19.
+CREATE TABLE Stores (StoreID INT IDENTITY (100,10))
+
+20.
+CREATE TABLE OrderDetails (OrderID INT PRIMARY KEY)
+
+21.
+ISNULL replaces a NULL with a given value (SQL Server only), while COALESCE returns 
+the first non-NULL value from multiple inputs (standard SQL). Use ISNULL for simple cases, 
+COALESCE for more flexibility.
+For example:
+SELECT ISNULL(NULL, 'N/A');
+SELECT COALESCE(NULL, NULL, 'Hello');
+
+22.
+CREATE TABLE Employees (EmpID INT PRIMARY KEY, Email VARCHAR(35) UNIQUE)
+
+23.
+CREATE TABLE Authors (
+    AuthorID INT PRIMARY KEY,
+    AuthorName VARCHAR(100)
+);
+
+CREATE TABLE Books (
+    BookID INT PRIMARY KEY,
+    Title VARCHAR(200),
+    AuthorID INT,
+    CONSTRAINT FK_Books_Authors
+        FOREIGN KEY (AuthorID)
+        REFERENCES Authors(AuthorID)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
