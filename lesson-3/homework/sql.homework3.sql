@@ -58,3 +58,39 @@ CREATE TABLE Categories (CategoryID INT PRIMARY KEY, CategoryName VARCHAR(50) UN
 The IDENTITY column in SQL Server is used to automatically generate unique numeric values for each row in a table.
 It’s commonly applied to primary key columns to ensure each row has a distinct identifier without manual input.
 
+11.
+BULK INSERT Products
+FROM 'C:\SQL2022/bulk insert.txt'
+WITH (
+FIELDTERMINATOR = ',',
+ROWTERMINATOR = '\n',
+FIRSTROW = 2
+)
+
+12.
+ALTER TABLE Products
+ADD CONSTRAINT fk_category
+FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID)
+
+13.
+ PRIMARY KEY: Uniquely identifies each row. Only one per table. Cannot be NULL.
+Automatically combines UNIQUE and NOT NULL.
+ UNIQUE KEY: Ensures values in a column (or group of columns) are unique.
+You can have multiple UNIQUE keys. Allows one NULL value.
+
+14.
+ALTER TABLE Products 
+ADD CONSTRAINT chk_Price CHECK (Price > 0)
+
+15.
+ALTER TABLE Products 
+ADD Stock INT NOT NULL
+
+16.
+SELECT Price, ISNULL(Price, 0) AS Price FROM Products
+
+17.
+A FOREIGN KEY links two tables by referencing the PRIMARY KEY of another. 
+It ensures data matches across tables, keeping relationships valid. 
+You define it in CREATE TABLE or with ALTER TABLE, and can add rules like 
+ON DELETE CASCADE to manage related data automatically. It protects consistency and builds structured connections.
