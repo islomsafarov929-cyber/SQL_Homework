@@ -129,4 +129,4 @@ CREATE TABLE Books (
         FOREIGN KEY (AuthorID)
         REFERENCES Authors(AuthorID)
         ON DELETE CASCADE
-        ON UPDATE CASCADE
+        ON UPDATE CASCADE)
