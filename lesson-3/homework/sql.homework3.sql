@@ -40,7 +40,7 @@ CREATE TABLE Users (
 
 6. 
 ALTER TABLE Products
-ADD UNIQUE (ProductName)
+ADD CONSTRAINT UQ_Products_ProductName UNIQUE (ProductName)
 
 7.
 -- Delete all records of customers who have canceled their account
@@ -102,7 +102,12 @@ CREATE TABLE Customers (Age INT CHECK (Age >= 18))
 CREATE TABLE Stores (StoreID INT IDENTITY (100,10))
 
 20.
-CREATE TABLE OrderDetails (OrderID INT PRIMARY KEY)
+CREATE TABLE OrderDetails (
+  OrderID   INT NOT NULL,
+  ProductID INT NOT NULL,
+  Quantity  INT NOT NULL,
+  PRIMARY KEY (OrderID, ProductID)
+);
 
 21.
 ISNULL replaces a NULL with a given value (SQL Server only), while COALESCE returns 
@@ -129,4 +134,5 @@ CREATE TABLE Books (
         FOREIGN KEY (AuthorID)
         REFERENCES Authors(AuthorID)
         ON DELETE CASCADE
-        ON UPDATE CASCADE)
+        ON UPDATE CASCADE
+    )
