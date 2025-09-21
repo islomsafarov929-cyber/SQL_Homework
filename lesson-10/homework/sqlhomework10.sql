@@ -173,7 +173,7 @@ SELECT O.OrderID,
        O.OrderDate 
 FROM Orders AS O 
 LEFT JOIN Payments AS P ON O.OrderID = P.OrderID 
-WHERE P.PaymentID IS NULL AND YEAR(O.OrderDate) < 2020;
+WHERE P.PaymentID IS NULL AND YEAR(O.OrderDate) < 2020-01-01;
 
 
 --21.Writing a query to return products that do not have a matching category.
