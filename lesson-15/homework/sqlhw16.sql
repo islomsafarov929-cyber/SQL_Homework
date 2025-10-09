@@ -123,7 +123,7 @@ WHERE salary >
      FROM employees)
   AND salary <
     (SELECT MAX(salary)
-     FROM employees
-     WHERE E.department_id = department_id
+     FROM employees as D
+     WHERE E.department_id = D.department_id
      GROUP BY department_id);
 
