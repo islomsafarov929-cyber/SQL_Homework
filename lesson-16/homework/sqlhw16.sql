@@ -246,7 +246,8 @@ WHERE LENGTH > 1
 WITH Numbers AS 
   (SELECT CAST('1' AS VARCHAR(10)) AS seq,
           1 AS n
-   UNION ALL SELECT seq + CAST(n + 1 AS VARCHAR(10)),
+   UNION ALL 
+ SELECT CAST(seq + CAST(n + 1 AS VARCHAR(10))AS VARCHAR(10)),
                     n + 1
    FROM Numbers
    WHERE n < 4)
